@@ -14,6 +14,21 @@ import {
   const [showModal, setShowModal] = React.useState(false);
   const [showEditModal, setShowEditModal] = React.useState(false);
   const [showSummaryModal, setShowSummaryModal] = React.useState(false);
+  const generateSummary = async () => {
+  const res = await fetch("http://localhost:5001/api/summarize", {
+  method: "POST",
+  headers: {
+  "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    text: "This is my sample note for AI summary",
+  }),
+  });
+
+  const data = await res.json();
+
+  alert(data.summary);
+  };
   return (
     <div className="dashboard">
 
@@ -138,10 +153,8 @@ import {
             </div>
             <div className="card-buttons">
 
-              <button
-               onClick={() => setShowSummaryModal(true)}
-               >
-               Generate AI Summary
+              <button onClick={generateSummary}>
+                Generate AI Summary
               </button>
 
               <button
@@ -175,9 +188,7 @@ import {
 
             <div className="card-buttons">
 
-              <button
-               onClick={() => setShowSummaryModal(true)}
-                >
+              <button onClick={generateSummary}>
                Generate AI Summary
               </button>
 
