@@ -14,6 +14,33 @@ import {
   const [showModal, setShowModal] = React.useState(false);
   const [showEditModal, setShowEditModal] = React.useState(false);
   const [showSummaryModal, setShowSummaryModal] = React.useState(false);
+  const [selectedNote, setSelectedNote] = React.useState(null);
+  const [notes, setNotes] = React.useState([
+    {
+     id: 1,
+     title: "Project Planning",
+     content: "Discuss project roadmap and frontend implementation details...",
+     tags: ["#work", "#meeting"],
+    },
+    {
+     id: 2,
+     title: "React Learning",
+     content: "Learn components, props, hooks and routing in React.js...",
+     tags: ["#react", "#study"],
+    },
+  ]);
+  const addNote = (newNote) => {
+    setNotes([...notes, newNote]);
+  };
+  
+  const updateNote = (updatedNote) => {
+  const updatedNotes = notes.map((note) =>
+    note.id === updatedNote.id ? updatedNote : note
+  );
+
+  setNotes(updatedNotes);
+  };
+
   const generateSummary = async () => {
   const res = await fetch("http://localhost:5001/api/summarize", {
   method: "POST",
@@ -135,72 +162,31 @@ import {
 
         <div className="notes-section">
 
-          <div className="note-card">
-
-            <h3>Project Planning</h3>
-
-            <p>
-              Discuss project roadmap and frontend
-              implementation details...
-            </p>
-
+          {notes.map((note) => (
+         <div className="note-card" key={note.id}>
+           <h3>{note.title}</h3>
+           <p>{note.content}</p>
             <div className="tags">
-
-              <span>#work</span>
-
-              <span>#meeting</span>
-
+              {note.tags.map((tag, index) => (
+              <span key={index}>{tag}</span>
+              ))}
             </div>
             <div className="card-buttons">
-
               <button onClick={generateSummary}>
                 Generate AI Summary
-              </button>
+             </button>
 
               <button
-               onClick={() => setShowEditModal(true)}
-              >
-               Edit Note
+               onClick={() => {
+               setSelectedNote(note);
+               setShowEditModal(true);
+               }} 
+               > 
+                Edit Note Modal
               </button>
-
-            </div>
-
+           </div>
           </div>
-
-
-
-          <div className="note-card">
-
-            <h3>React Learning</h3>
-
-            <p>
-              Learn components, props, hooks and
-              routing in React.js...
-            </p>
-
-            <div className="tags">
-
-              <span>#react</span>
-
-              <span>#study</span>
-
-            </div>
-
-            <div className="card-buttons">
-
-              <button onClick={generateSummary}>
-               Generate AI Summary
-              </button>
-
-              <button
-                onClick={() => setShowEditModal(true)}
-              >
-               Edit Note
-              </button>
-
-            </div>
-
-          </div>
+          ))}
 
         </div>
 
@@ -209,6 +195,7 @@ import {
       showModal && (
       <CreateNoteModal
       closeModal={() => setShowModal(false)}
+      addNote={addNote}
      />
      )
      }
@@ -216,6 +203,8 @@ import {
       showEditModal && (
       <EditNoteModal
       closeModal={() => setShowEditModal(false)}
+      selectedNote={selectedNote}
+      updateNote={updateNote}
      />
      )
      }
@@ -225,7 +214,7 @@ import {
       closeModal={() => setShowSummaryModal(false)}
       />
      )
-    }
+     }
      
     </div>
   );

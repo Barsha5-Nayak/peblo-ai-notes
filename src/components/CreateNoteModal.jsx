@@ -1,6 +1,9 @@
 import React from "react";
 
-const CreateNoteModal = ({ closeModal }) => {
+const CreateNoteModal = ({ closeModal, addNote }) => {
+  const [title, setTitle] = React.useState("");
+  const [content, setContent] = React.useState("");
+  const [tags, setTags] = React.useState("");
   return (
 
     <div className="modal-overlay">
@@ -12,38 +15,58 @@ const CreateNoteModal = ({ closeModal }) => {
         {/* TITLE */}
 
         <input
-          type="text"
-          placeholder="Enter note title"
-        />
+         type="text"
+         placeholder="Enter note title"
+         value={title}
+         onChange={(e) => setTitle(e.target.value)}
+       />
 
         {/* CONTENT */}
 
         <textarea
-          placeholder="Write your note content..."
+         placeholder="Write your note content..."
+         value={content}
+         onChange={(e) => setContent(e.target.value)}
         ></textarea>
 
         {/* TAGS */}
 
         <input
-          type="text"
-          placeholder="Add tags (react, study...)"
-        />
+         type="text"
+         placeholder="Add tags (react, study...)"
+         value={tags}
+         onChange={(e) => setTags(e.target.value)}
+       />
 
         {/* BUTTONS */}
-
         <div className="modal-buttons">
 
-          <button className="cancel-btn"
-            onClick={closeModal}
-          >
-            Cancel
-          </button>
+          <button
+           className="cancel-btn"
+           onClick={closeModal}
+           >
+           Cancel
+         </button>
 
-          <button className="save-btn">
+          <button
+            className="save-btn"
+            onClick={() => {
+             const newNote = {
+               id: Date.now(),
+               title,
+               content,
+               tags: tags.split(","),
+              };
+
+              addNote(newNote);
+
+             closeModal();
+            }}
+           > 
             Save Note
-          </button>
-
+         </button>
         </div>
+
 
       </div>
 
