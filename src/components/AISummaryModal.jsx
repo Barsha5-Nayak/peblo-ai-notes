@@ -1,6 +1,6 @@
 import React from "react";
 
-const AISummaryModal = ({ closeModal }) => {
+const AISummaryModal = ({ closeModal, summary }) => {
 
   return (
 
@@ -14,23 +14,7 @@ const AISummaryModal = ({ closeModal }) => {
 
           <h4>Summary</h4>
 
-          <p>
-            This note discusses React hooks,
-            routing, component structure and
-            frontend development concepts.
-          </p>
-
-          <h4>Action Items</h4>
-
-          <ul>
-
-            <li>Practice React hooks</li>
-
-            <li>Build mini project</li>
-
-            <li>Revise React Router</li>
-
-          </ul>
+          <p>{summary}</p>
 
         </div>
 

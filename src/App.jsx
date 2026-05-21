@@ -1,3 +1,4 @@
+import "./App.css";
 import ShareNote from "./pages/ShareNote";
 import {
   BrowserRouter,
@@ -8,6 +9,9 @@ import {
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
+import Notes from "./pages/Notes";
+import Analytics from "./pages/Analytics";
+import Settings from "./pages/Settings";
 
 
 function App() {
@@ -30,10 +34,24 @@ function App() {
           path="/dashboard"
           element={<Dashboard />}
         />
+        <Route
+          path="/notes"
+          element={<Notes />}
+        />
+
+        <Route
+          path="/analytics"
+          element={<Analytics />}
+        />
+
+        <Route
+          path="/settings"
+          element={<Settings />}
+        />
 
 
         <Route
-         path="/share" 
+         path="/share/:id"
          element={<ShareNote />} 
         />
 
