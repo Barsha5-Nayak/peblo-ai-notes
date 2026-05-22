@@ -499,3 +499,14 @@
   color: white;
   border: 1px solid #555;
 }
+
+.dark .share-card {
+  background: #1f2937;
+  color: white;
+}
+
+.dark .share-text,
+.dark .share-card h1,
+.dark .share-card p {
+  color: white;
+}

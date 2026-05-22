@@ -23,7 +23,7 @@ const ShareNote = () => {
   }
 
   return (
-    <div className="share-page">
+    <div className={darkMode ? "share-page dark" : "share-page"}>
 
       <div className="share-card">
 
