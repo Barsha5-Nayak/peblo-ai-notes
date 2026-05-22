@@ -7,6 +7,8 @@ import {
 import React from "react";
 
 const ShareNote = () => {
+  const darkMode =
+  localStorage.getItem("theme") === "dark";
 
   const sharedNote = JSON.parse(
     localStorage.getItem("sharedNote")
@@ -14,7 +16,7 @@ const ShareNote = () => {
 
   if (!sharedNote) {
     return (
-      <div className="share-page">
+      <div className={darkMode ? "share-page dark" : "share-page"}>
         <h2>No shared note found...</h2>
       </div>
     );

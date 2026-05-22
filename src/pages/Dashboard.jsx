@@ -9,6 +9,8 @@ import {
   FileText,
   Sparkles,
   Tag,
+  Moon,
+  Sun,
 } from "lucide-react";
 
   const Dashboard = () => {
@@ -19,6 +21,12 @@ import {
   const [selectedNote, setSelectedNote] = React.useState(null);
   const [searchTerm, setSearchTerm] = React.useState("");
   const [selectedSummary, setSelectedSummary] = React.useState("");
+  const [darkMode, setDarkMode] = React.useState(() => {
+  return localStorage.getItem("theme") === "dark";
+  });
+
+
+
   const [notes, setNotes] = React.useState(() => {
   const savedNotes = localStorage.getItem("notes");
 
@@ -63,6 +71,13 @@ import {
   useEffect(() => {
   localStorage.setItem("notes", JSON.stringify(notes));
   }, [notes]);
+  useEffect(() => {
+  localStorage.setItem(
+    "theme",
+    darkMode ? "dark" : "light"
+   );
+  }, [darkMode]);
+
   const filteredNotes = notes.filter((note) =>
   note.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -84,7 +99,8 @@ import {
    setShowSummaryModal(true);
   };
   return (
-    <div className="dashboard">
+    <div className={darkMode ? "dashboard dark" : "dashboard"}>
+      
 
       {/* SIDEBAR */}
 
@@ -144,6 +160,12 @@ import {
            />
 
           </div>
+          <button
+            className="theme-toggle"
+            onClick={() => setDarkMode(!darkMode)}
+           >
+           {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+         </button>
 
           <button className="create-btn" onClick={()=> setShowModal(true)}>
            + Create Note

@@ -1,8 +1,10 @@
 import React from "react";
 
 const Analytics = () => {
+  const darkMode =
+  localStorage.getItem("theme") === "dark";
   return (
-    <div className="dashboard">
+    <div className={darkMode ? "dashboard dark" : "dashboard"}>
 
       <div className="sidebar">
         <h2>Peblo AI</h2>

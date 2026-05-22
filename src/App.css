@@ -405,3 +405,97 @@
     width: 100%;
   }
 }
+.theme-toggle {
+  background: #7c3aed;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.dark {
+  background: #111827;
+  color: white;
+}
+.dark .main-content,
+.dark .notes-page,
+.dark .analytics-page,
+.dark .settings-page,
+.dark .share-page {
+  background: #111827;
+  color: white;
+}
+
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark p,
+.dark li,
+.dark span {
+  color: white;
+}
+
+.dark .share-card {
+  background: #1e293b;
+  color: white;
+}
+
+.dark .modal-box h2,
+.dark .modal-box h3,
+.dark .modal-box h4,
+.dark .modal-box p {
+  color: white;
+}
+
+.dark .search-box input {
+  background: #374151;
+  color: white;
+}
+
+.dark .search-box input::placeholder,
+.dark textarea::placeholder,
+.dark input::placeholder {
+  color: #d1d5db;
+}
+
+.dark .sidebar {
+  background: #1f2937;
+}
+
+.dark .note-card,
+.dark .stat-card,
+.dark .modal-box {
+  background: #1e293b;
+  color: white;
+}
+
+.dark input,
+.dark textarea {
+  background: #374151;
+  color: white;
+  border: 1px solid #555;
+}
+
+.dark .search-box {
+  background: #374151;
+  border-radius: 10px;
+}
+
+.dark .search-box input {
+  background: transparent;
+  color: white;
+}
+
+.dark .search-box svg {
+  color: white;
+}
+
+.dark .tags span,
+.dark .share-tags span {
+  background: #374151;
+  color: white;
+  border: 1px solid #555;
+}

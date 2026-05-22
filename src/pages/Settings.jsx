@@ -1,8 +1,10 @@
 import React from "react";
 
 const Settings = () => {
+  const darkMode =
+  localStorage.getItem("theme") === "dark";
   return (
-    <div className="dashboard">
+    <div className={darkMode ? "dashboard dark" : "dashboard"}>
 
       <div className="sidebar">
         <h2>Peblo AI</h2>
@@ -14,8 +16,18 @@ const Settings = () => {
           <h2>Settings</h2>
         </div>
 
-        <div className="note-card">
-          <p>Profile settings will appear here.</p>
+        <div className="stats-grid">
+
+          <div className="stat-card">
+
+           <h3>Profile Settings</h3>
+
+            <p>
+              Profile settings will appear here.
+           </p>
+
+          </div>
+
         </div>
 
       </div>
